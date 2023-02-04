@@ -1,0 +1,44 @@
+[
+    {
+        "name": "John",
+        "age": 18,
+        "phone_number": "+380....",
+        "is_married": false,
+        "hobbies": [
+            "Programming",
+            "Board Games",
+            "Video Games"
+        ],
+        "job": null
+    },
+    {
+        "name": "Gandalf",
+        "age": null,
+        "phone_number": null,
+        "is_married": false,
+        "hobbies": [
+            "Magic",
+            "Riding",
+            "Rings"
+        ],
+        "job": {
+            "position": "Wizard",
+            "company": null
+        }
+    },
+    {
+        "name": "Aragorn",
+        "age": 130,
+        "phone_number": null,
+        "is_married": true,
+        "hobbies": [
+            "Horseman",
+            "Swordsman",
+            "Tracker"
+        ],
+        "job": {
+            "position": "King",
+            "company": "Gondor Kingdom"
+        }
+    }
+]
