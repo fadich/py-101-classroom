@@ -1,10 +1,10 @@
 def counter(func):
     def wrap(*args, **kwargs):
-        wrap.__counter__ += 1
+        wrap.count += 1
 
         return func(*args, **kwargs)
 
-    wrap.__counter__ = 0
+    wrap.count = 0
 
     return wrap
 
@@ -32,7 +32,7 @@ print(
 )
 
 print(
-    f"\nprint called: {print.__counter__} time(s)",
-    f"input called: {input.__counter__} time(s)",
+    f"\nprint called: {print.count} time(s)",
+    f"input called: {input.count} time(s)",
     sep="\n",
 )
