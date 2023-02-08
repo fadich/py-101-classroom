@@ -1,14 +1,10 @@
 def counter(func):
-    called_times = 0
-
     def wrap(*args, **kwargs):
-        nonlocal called_times
-
-        called_times += 1
-
-        wrap.__called_times__ = called_times
+        wrap.__counter__ += 1
 
         return func(*args, **kwargs)
+
+    wrap.__counter__ = 0
 
     return wrap
 
@@ -36,15 +32,7 @@ print(
 )
 
 print(
-    f"\nprint called: {...} time(s)",
-    f"input called: {...} time(s)",
-    sep="\n",
-)
-
-
-
-print(
-    f"\nprint called: {print.__called_times__} time(s)",
-    f"input called: {input.__called_times__} time(s)",
+    f"\nprint called: {print.__counter__} time(s)",
+    f"input called: {input.__counter__} time(s)",
     sep="\n",
 )
