@@ -22,3 +22,9 @@ their_world = circle_area(4.14159, "THEIR")
 print(f"their {their_world(1)}")
 print(f"their {their_world(5)}")
 print(f"their {their_world(5.85)}")
+
+their_world_2 = circle_area(4.14159, "THEIR 2")
+their_world(50)
+
+their_world(90)
+their_world_2(4.5)
