@@ -37,12 +37,12 @@ def read_username() -> str:
     return input(">>> ") or "<Anonymous>"
 
 
-print(read_username.__doc__)
+if __name__ == "__main__":
+    print(read_username.__doc__)
 
+    username = read_username()
+    user = {
+        "username": username
+    }
 
-username = read_username()
-user = {
-    "username": username
-}
-
-print_name(user)
+    print_name(user)
