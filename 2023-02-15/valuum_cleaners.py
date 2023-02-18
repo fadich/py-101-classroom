@@ -17,6 +17,12 @@ class Device:
     def toggle_turn(self):
         self.is_tuned_on = not self.is_tuned_on
 
+    def is_turned(self) -> bool:
+        return self.is_tuned_on
+
+    # if device.is_turned():
+    #     print("DEVICE IS TURNED ON")
+
 
 class Robot(Device):
     """
@@ -30,6 +36,7 @@ class Robot(Device):
         if self.is_tuned_on:
             print("I'm scanning")
         else:
+            # raise
             print("Turn me on first")
 
 
@@ -43,35 +50,61 @@ class VacuumCleaner(Device, CleaningItem):
 
     def clean(self):
         if self.is_tuned_on:
-            print("I'm cleaning")
+            print(f"I'm cleaning {self.cleaning_type}")
         else:
             print("Turn me on first")
 
 
-# TODO: Start from here
-
 class RobotCleaner(Robot, VacuumCleaner):
 
-    # def __init__(self):
-    #     super().__init__()
-
     def clean(self):
-        super().scan()
-        super().clean()
+        if not self.is_turned():
+            raise RuntimeError("Turn me on first")
+            # print("Turn me on first")
+
+        Robot.scan(self)
+        VacuumCleaner.clean(self)
+
+# def vacuum_cleaner_clean():
+#     ...
+#
+#
+# def robot_scan():
+#     ...
+#
+#
+# def robot_cleaner_clean():
+#     robot_scan()
+#     vacuum_cleaner_clean()
 
 
 class RobotWetCleaner(RobotCleaner):
-    pass
+
+    def __init__(self):
+        super().__init__()
+        self.cleaning_type = "wet"
 
 
 if __name__ == "__main__":
     robot = Robot()
     hoover = VacuumCleaner()
-    # robo_hoover = RobotCleaner()
-    # wet_robo_hoover = RobotWetCleaner()
+
+    robo_hoover = RobotCleaner()
+    robo_hoover.toggle_turn()
+    robo_hoover.clean()
+    robo_hoover.toggle_turn()
+
+    wet_robo_hoover = RobotWetCleaner()
+    if not wet_robo_hoover.is_turned():
+        wet_robo_hoover.toggle_turn()
+
+    wet_robo_hoover.clean()
+    wet_robo_hoover.toggle_turn()
+
+    print(wet_robo_hoover)
 
     # stub = Robot()
-    stub = VacuumCleaner()
+    # stub = VacuumCleaner()
     # stub = RobotWetCleaner()
 
-    stub.toggle_turn()
+    # stub.toggle_turn()
