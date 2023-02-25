@@ -17,6 +17,21 @@ class Wizard:
 
         self._spells = cls_prop
 
+    @property
+    def spells(self):
+        return self._spells
+
+    @spells.setter
+    def spells(self, value):
+        spell = value
+        if isinstance(spell, list):
+            spell = value[0]
+
+        if not isinstance(spell, str):
+            raise TypeError()
+
+        self._spells = [value]
+
     def cast_spell(self, spell_name: str):
         if spell_name not in self._spells:
             raise RuntimeError()
@@ -45,26 +60,33 @@ if __name__ == "__main__":
     gendalf = Wizard()
     saruman = Wizard()
 
-    print(gendalf.__dict__)
-    print(Wizard.__dict__)
+    spell = "Fireball!"
+    if spell in gendalf.spells:
+        gendalf.cast_spell(spell)
+    else:
+        gendalf.spells = spell
+        gendalf.cast_spell(spell)
 
-    print(gendalf.DEFAULT_CLASS_PROP)
-    print(saruman.DEFAULT_CLASS_PROP)
-    print(gendalf.__dict__)
-    print(saruman.__dict__)
-
-    saruman.abc = 0
-    saruman.DEFAULT_CLASS_PROP.append(0)
-    saruman.DEFAULT_CLASS_PROP.append(89)
-    print(gendalf.__dict__)
-    print(saruman.__dict__)
-    print(Wizard.__dict__)
-
-    print(gendalf.DEFAULT_CLASS_PROP)
-    print(saruman.DEFAULT_CLASS_PROP)
-    print(Wizard.DEFAULT_CLASS_PROP)
-
-    saruman.cast_spell()  # saruman.cast_spell = lambda: 0
-    saruman.cast_spell = 0
-    print(saruman.__dict__)
-    saruman.cast_spell()
+    # print(gendalf.__dict__)
+    # print(Wizard.__dict__)
+    #
+    # print(gendalf.DEFAULT_CLASS_PROP)
+    # print(saruman.DEFAULT_CLASS_PROP)
+    # print(gendalf.__dict__)
+    # print(saruman.__dict__)
+    #
+    # saruman.abc = 0
+    # saruman.DEFAULT_CLASS_PROP.append(0)
+    # saruman.DEFAULT_CLASS_PROP.append(89)
+    # print(gendalf.__dict__)
+    # print(saruman.__dict__)
+    # print(Wizard.__dict__)
+    #
+    # print(gendalf.DEFAULT_CLASS_PROP)
+    # print(saruman.DEFAULT_CLASS_PROP)
+    # print(Wizard.DEFAULT_CLASS_PROP)
+    #
+    # saruman.cast_spell()  # saruman.cast_spell = lambda: 0
+    # saruman.cast_spell = 0
+    # print(saruman.__dict__)
+    # saruman.cast_spell()
