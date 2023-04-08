@@ -29,7 +29,7 @@ def receive_msg(client, buffsize, start_event: Event):
         except UnicodeDecodeError as e:
             print(e)
 
-        print(f"\r{data}\n>>> ", end="")
+        print(f"\r{data}    \n>>> ", end="")
 
 
 def on_connection(
